@@ -36,6 +36,7 @@ const handler = NextAuth({
           const randomChars = Math.random().toString(36).substr(2, 8);
           modifiedUsername = `${modifiedUsername}_${randomChars}`;
         }
+        
           if (!userExists) {
       //       const firstName = profile.name.split(' ')[0]; // Extract the first name
       // const uniqueIdentifier = Math.random().toString(36).substr(2, 8); 

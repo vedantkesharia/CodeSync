@@ -87,6 +87,23 @@
   display: none;
 }
 
+.visibility-label {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.visibility-label.public {
+  background-color: #4caf50;
+  color: white;
+}
+
+.visibility-label.private {
+  background-color: #f44336;
+  color: white;
+}
 
 .gradient {
   height: fit-content;

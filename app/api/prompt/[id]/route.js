@@ -8,7 +8,12 @@ export const GET = async (request, { params }) => {
         const prompt = await Prompt.findById(params.id).populate("creator")
         if (!prompt) return new Response("Prompt Not Found", { status: 404 });
 
-        return new Response(JSON.stringify(prompt), { status: 200 })
+        return new Response(JSON.stringify(prompt), { status: 200 });
+        // if (prompt.visibility === 'public') {
+        //     return new Response(JSON.stringify(prompt), { status: 200 });
+        //   } else {
+        //     return new Response("Prompt is private", { status: 403 });
+        //   }
 
     } catch (error) {
         return new Response("Internal Server Error", { status: 500 });
@@ -16,7 +21,7 @@ export const GET = async (request, { params }) => {
 }
 
 export const PATCH = async (request, { params }) => {
-    const { prompt, tag } = await request.json();
+    const { prompt, tag, visibility } = await request.json();
 
     try {
         await connectToDB();
@@ -30,6 +35,7 @@ export const PATCH = async (request, { params }) => {
 
         existingPrompt.prompt = prompt;
         existingPrompt.tag = tag;
+        existingPrompt.visibility = visibility;
 
         await existingPrompt.save();
 

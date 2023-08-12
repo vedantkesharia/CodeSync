@@ -13,7 +13,7 @@ const UserProfile = ({ params }) => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${params?.id}/posts`);
+      const response = await fetch(`/api/users/${params?.id}/posts?visibility=public`);
       const data = await response.json();
 
       setUserPosts(data);
@@ -22,11 +22,13 @@ const UserProfile = ({ params }) => {
     if (params?.id) fetchPosts();
   }, [params.id]);
 
+  const publicUserPosts = userPosts.filter(post => post.visibility === 'public');
+
   return (
     <Profile
       name={userName}
       desc={`Explore the World of ${userName}: Dive into ${userName}'s Profile to Discover some amazing Code Snippets `}
-      data={userPosts}
+      data={publicUserPosts}
     />
   );
 };

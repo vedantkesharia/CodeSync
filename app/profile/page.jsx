@@ -16,8 +16,13 @@ const MyProfile = () => {
     const fetchPosts = async () => {
       const response = await fetch(`/api/users/${session?.user.id}/posts`);
       const data = await response.json();
+      const postsWithVisibility = data.map((post) => ({
+        ...post,
+        visibility: post.visibility || 'public',
+      }));
 
-      setMyPosts(data);
+      setMyPosts(postsWithVisibility);
+      // setMyPosts(data);
     };
 
     if (session?.user.id) fetchPosts();
@@ -52,6 +57,7 @@ const MyProfile = () => {
       name='My'
       desc='Welcome to your personalized profile page. Share your exceptional prompts and inspire others with the power of your imagination'
       data={myPosts}
+      // data={myPosts.map((post) => ({ ...post, visibility: post.visibility || 'public' }))}
       handleEdit={handleEdit}
       handleDelete={handleDelete}
     />

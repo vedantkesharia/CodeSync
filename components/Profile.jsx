@@ -15,7 +15,12 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
             post={post}
             handleEdit={() => handleEdit && handleEdit(post)}
             handleDelete={() => handleDelete && handleDelete(post)}
-          />
+          >
+            {/* <span className={`visibility-label ${post.visibility}`}> */}
+            <span className="visibility-label">
+      {post.visibility === "public" ? "Public" : "Private"}
+    </span>
+          </PromptCard>
         ))}
       </div>
     </section>

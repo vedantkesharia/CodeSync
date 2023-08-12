@@ -12,7 +12,12 @@ const PromptSchema = new Schema({
   tag: {
     type: String,
     required: [true, 'Tag is required.'],
-  }
+  },
+  visibility: {
+    type: String,
+    enum: ['public', 'private'], // Allow only these values
+    default: 'public', // Default value is public
+  },
 });
 
 const Prompt = models.Prompt || model('Prompt', PromptSchema);

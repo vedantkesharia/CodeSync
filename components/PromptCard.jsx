@@ -76,19 +76,22 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
 
       {/* <p className='my-4 font-satoshi text-sm text-gray-700'>{post.prompt}</p> */}
 
-      <div className="code_highlight" style={{ maxHeight: "300px",maxWidth:'340px'}}>
-          <SyntaxHighlighter
-            language="javascript"
-            style={dracula}
-            customStyle={{
-              maxHeight: "250px",
-              maxWidth:'305px',
-              overflowY: "auto",
-              overflowX: "auto",
-            }}
-          >
-            {post.prompt}
-          </SyntaxHighlighter>
+      <div
+        className="code_highlight"
+        style={{ maxHeight: "300px", maxWidth: "340px" }}
+      >
+        <SyntaxHighlighter
+          language="javascript"
+          style={dracula}
+          customStyle={{
+            maxHeight: "250px",
+            maxWidth: "305px",
+            overflowY: "auto",
+            overflowX: "auto",
+          }}
+        >
+          {post.prompt}
+        </SyntaxHighlighter>
       </div>
       <p
         className="font-inter text-sm blue_gradient cursor-pointer"
@@ -110,6 +113,9 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
             onClick={handleDelete}
           >
             Delete
+          </p>
+          <p className={`visibility-label ${post.visibility}`} >
+            {post.visibility === "public" ? "Public" : "Private"}
           </p>
         </div>
       )}

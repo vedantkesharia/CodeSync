@@ -82,6 +82,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
             style={dracula}
             customStyle={{
               maxHeight: "250px",
+              maxWidth:'350px',
               overflowY: "auto",
               overflowX: "auto",
             }}

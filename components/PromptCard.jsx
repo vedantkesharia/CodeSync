@@ -6,7 +6,9 @@ import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { materialDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+// import { materialDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { Scrollbars } from "react-custom-scrollbars";
 
 const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   const { data: session } = useSession();
@@ -22,7 +24,6 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
     if (post.creator._id === session?.user.id) return router.push("/profile");
 
     router.push(`/profile/${post.creator._id}?name=${post.creator.username}`);
-
   };
 
   const handleCopy = () => {
@@ -31,11 +32,9 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
     setTimeout(() => setCopied(false), 3000);
   };
 
-
   const toggleShowFullCode = () => {
     setShowFullCode(!showFullCode);
   };
-
 
   return (
     <div className="prompt_card">
@@ -77,42 +76,19 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
       </div>
 
       {/* <p className='my-4 font-satoshi text-sm text-gray-700'>{post.prompt}</p> */}
-      {/* <div className='code_highlight'>
-        <SyntaxHighlighter language="javascript" style={materialDark}>
-          {post.prompt}
-        </SyntaxHighlighter>
-      </div> */}
-      {/* <div className="code_highlight">
-        <SyntaxHighlighter language="javascript" style={materialDark}>
-          {showFullCode
-            ? post.prompt
-            : post.prompt.split("\n").slice(0, 6).join("\n")}
-        </SyntaxHighlighter>
-        {post.prompt.split("\n").length > 6 && (
-          <p
-            className="font-inter text-sm text-blue-500 cursor-pointer"
-            onClick={toggleShowFullCode}
+
+      <div className="code_highlight" >
+          <SyntaxHighlighter
+            language="javascript"
+            style={dracula}
+            customStyle={{
+              maxHeight: "250px",
+              overflowY: "auto",
+              overflowX: "auto",
+            }}
           >
-            {showFullCode ? "...Show Less" : "...Show More"}
-          </p>
-        )}
-      </div> */} 
-        <div className="code_highlight">
-        <SyntaxHighlighter language="javascript" style={materialDark} customStyle={{ maxHeight: '250px', // Adjust the height as needed
-            overflowY: 'auto', // Hide vertical scrollbar
-            overflowX: 'auto',}}>
-          {post.prompt}
-        </SyntaxHighlighter>
-        {/* {post.prompt.split("\n").length > 20 && (
-          <div
-            className={`code_toggle ${
-              showFullCode ? "code_open" : "code_closed"
-            }`}
-            onClick={toggleShowFullCode}
-          >
-            {showFullCode ? "Collapse" : "Expand"}
-          </div>
-        )} */}
+            {post.prompt}
+          </SyntaxHighlighter>
       </div>
       <p
         className="font-inter text-sm blue_gradient cursor-pointer"

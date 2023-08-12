@@ -28,12 +28,21 @@ const handler = NextAuth({
           });
     
           // if not, create a new document and save user in MongoDB
+          
+        const profileName = profile.name;
+        let modifiedUsername = profileName.replace(" ", "").toLowerCase();
+
+        if (modifiedUsername.length < 3) {
+          const randomChars = Math.random().toString(36).substr(2, 8);
+          modifiedUsername = `${modifiedUsername}_${randomChars}`;
+        }
           if (!userExists) {
       //       const firstName = profile.name.split(' ')[0]; // Extract the first name
       // const uniqueIdentifier = Math.random().toString(36).substr(2, 8); 
             await User.create({
               email: profile.email,
-              username: profile.name.replace(" ", "").toLowerCase(),
+              username:modifiedUsername,
+              // username: profile.name.replace(" ", "").toLowerCase(),
               // username: `${firstName}_${uniqueIdentifier}`,
               image: profile.picture,
             });

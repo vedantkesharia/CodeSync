@@ -46,9 +46,29 @@
   /* overflow-x:auto; */
   white-space: pre-wrap;
   position: relative;
+
+}
+::-webkit-scrollbar {
+  width: 4px;
+  height:3px;
 }
 
-/* Add this style to the expand/collapse toggle */
+::-webkit-scrollbar-track {
+  background-color: none;
+}
+::-webkit-scrollbar-button {
+  background-color: none;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(180, 28, 170);
+  border-radius: 50px;
+}
+/* Show the scrollbar on hover */
+.code_highlight:hover {
+  scrollbar-width: thin !important;
+  -ms-overflow-style: auto !important;
+}
+
 .code_toggle {
   cursor: pointer;
   text-align: center;
@@ -66,6 +86,7 @@
 .code_open {
   display: none;
 }
+
 
 .gradient {
   height: fit-content;

@@ -76,13 +76,13 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
 
       {/* <p className='my-4 font-satoshi text-sm text-gray-700'>{post.prompt}</p> */}
 
-      <div className="code_highlight" >
+      <div className="code_highlight" style={{ maxHeight: "300px",maxWidth:'340px'}}>
           <SyntaxHighlighter
             language="javascript"
             style={dracula}
             customStyle={{
               maxHeight: "250px",
-              maxWidth:'350px',
+              maxWidth:'325px',
               overflowY: "auto",
               overflowX: "auto",
             }}

@@ -8,7 +8,6 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 // import { materialDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { Scrollbars } from "react-custom-scrollbars";
 
 const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   const { data: session } = useSession();
